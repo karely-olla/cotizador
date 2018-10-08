@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+ RewriteEngine On
+ 
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-1
+ 
+ RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Configure el paquete “ea-php71” como el lenguaje de programación predeterminado “PHP”.
+<IfModule mime_module>
+  AddType application/x-httpd-ea-php71 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
