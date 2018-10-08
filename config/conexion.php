@@ -1,7 +1,7 @@
 <?php
 
 try {
-	$con = new PDO('mysql:host=localhost; dbname=rincon_cotizador; charset=utf8', 'rincon_admin_cot', 'Eduardo22/');
+	$con = new PDO('mysql:host=localhost; dbname=cotizador; charset=utf8', '', '');
 	// $con = new PDO('mysql:host=localhost; dbname=db_cotizador_rm; charset=utf8', 'root', '');
 } catch (PDOException $e) {
 	echo "ERROR ". $e->getMessage();
