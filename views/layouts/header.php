@@ -1,10 +1,10 @@
 <?php 
-	define('link', 'http://cotizador.rincondelmontero.com/public/');
-	define('enlace', 'http://cotizador.rincondelmontero.com/views/');
+	// define('link', 'http://cotizador.rincondelmontero.com/public/');
+	// define('enlace', 'http://cotizador.rincondelmontero.com/views/');
 	// define('link', 'http://cotizador-com.stackstaging.com/public/');
 	// define('enlace', 'http://cotizador-com.stackstaging.com/views/');
-	// define('link', 'http://localhost/cotizador_servidor/public/');
-	// define('enlace', 'http://localhost/cotizador_servidor/views/');
+	define('link', 'http://localhost/cotizador/public/');
+	define('enlace', 'http://localhost/cotizador/views/');
 ?>
 <html>
 <head>

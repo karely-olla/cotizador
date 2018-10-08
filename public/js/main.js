@@ -1,8 +1,8 @@
 // const dominio = "http://cotizador-com.stackstaging.com/";
-const dominio = "/"
+const dominio = "/cotizador/"
 
-// $('#date_start').bootstrapMaterialDatePicker({  lang : 'es', time: false, minDate : new Date() });
-// $('#date_end').bootstrapMaterialDatePicker({  lang : 'es', time: false, minDate : new Date() });
+$('#date_start').bootstrapMaterialDatePicker({  lang : 'es', time: false, minDate : new Date() });
+$('#date_end').bootstrapMaterialDatePicker({  lang : 'es', time: false, minDate : new Date() });
 
 
 function showResults(k,grupos,sw){

@@ -1,4 +1,4 @@
-let dominioRe = "/";
+let dominioRe = "/cotizador/";
 // mostrar imagen preview
 function mostrarImagen(formulario, event) {
   let file = event.target.files[0];

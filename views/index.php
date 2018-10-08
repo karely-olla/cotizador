@@ -83,7 +83,7 @@ if (isset($_GET['months']) && !empty($_GET['months'])) {
                 <br>
                 <div class="col-lg-12">
                 	<div class="col-lg-3">
-                		<form action="http://cotizador.rincondelmontero.com/views/index.php" id="frm_select_report" method="GET">
+                		<form action="http://localhost/cotizador/views/index.php" id="frm_select_report" method="GET">
 	                		<select name="months" id="months_names" onchange="showReport()" class="pull-right form-control selectpicker" title="Elige el mes para el reporte">
 	                			
 	                		</select>
@@ -114,8 +114,7 @@ if (isset($_GET['months']) && !empty($_GET['months'])) {
                             $anuladas[$user->nombre] = '';
                             $vencidas[$user->nombre] = '';
                             $amount_cots[$user->nombre]='';
-                            while ($fp = $result_ejecutivo->fetch(PDO::FETCH_OBJ)) {                   
-                              $meses[$user->nombre] = $meses[$user->nombre]."'".$months[date('n', strtotime($fp->mes))-1]."',";                   
+                            while ($fp = $result_ejecutivo->fetch(PDO::FETCH_OBJ)) {                                                 
                               $pendientes[$user->nombre] = $pendientes[$user->nombre].$fp->pendientes.',';
                               $confirmadas[$user->nombre] = $confirmadas[$user->nombre].$fp->confirmadas.',';
                               $anuladas[$user->nombre] = $anuladas[$user->nombre].$fp->anuladas.',';

@@ -3,7 +3,7 @@
 session_start();
 
 date_default_timezone_set('America/Monterrey');
-$dominio='/';
+$dominio='/cotizador/';
 require_once '../modelos/User.php';
 $user = new User();
 
