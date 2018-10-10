@@ -421,7 +421,7 @@ function confirmar(id){
     function (data) {
       data=JSON.parse(data);
       if (data.success) {
-        $("#btn_generate_service").attr('href',`order-service.php?tkn=${data.token}&clave=${data.clave}`);
+        $("#btn_generate_service").attr('href',`order-service.php?tkn=${data.token}&clave=${data.clave}&id=${data.id}`);
       } else{
         $("#btn_generate_service").attr('disabled',`disabled`);
       }

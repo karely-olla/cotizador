@@ -25,15 +25,16 @@
           </div>
         </div>
         <div class="box-body">
-          <h1>Clave: <?php echo $_GET['clave']; ?></h1>
-          <form method="post" id="frm_order">
+          <h1>Clave: <?php echo $_GET['id']; ?></h1>
+          <form action="try_data.php" method="post" id="frm_order">
+            <input type="hidden" id="id_empresa" name="id_empresa" value="<?=$_GET['id']?>">
             <div class="form-group col-lg-3">
               <label for="">Hora de llegada:</label>
-              <input type="time" class="form-control" required>
+              <input type="time" name="hour_came" class="form-control" required>
             </div>
             <div class="form-group col-lg-3">
               <label for="">Hora de Salida:</label>
-              <input type="time" class="form-control" required>
+              <input type="time" name="hour_exit" class="form-control" required>
             </div>
             <div class="form-group col-lg-6">
               <label for="" class="h3">Selecciona la areas involucradas:</label>
@@ -47,10 +48,69 @@
               <label class="center-block" for="sell"><input type="checkbox" name="areas[]" value="sell" id="sell"> Ventas</label>
               <button type="button" onclick="addAreas()" class="btn btn-primary">Capturar</button>  
             </div>
-            <div id="areas_selected">
-              
+            <div id="areas_selected">              
             </div>
-          </form>            
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>   
+        <?php     
+          try {
+            $con = new PDO('mysql:host=localhost; dbname=cotizador; charset=utf8', 'root', '');
+                // $con = new PDO('mysql:host=localhost; dbname=db_cotizador_rm; charset=utf8', 'root', '');
+              } catch (PDOException $e) {
+                  echo "ERROR " . $e->getMessage();
+                  die();
+              }
+              if (!function_exists('ejecutarConsulta')) {
+                  function ejecutarConsulta($sql)
+                  {
+                      global $con;
+                      $query = $con->prepare($sql);
+                      $query->execute();
+                      return $query;
+                  }
+
+                  function ejecutarConsultaSimpleFila($sql)
+                  {
+                      global $con;
+                      $query = $con->query($sql);
+                      $row = $query->fetch(PDO::FETCH_OBJ);
+                      return $row;
+                  }
+
+                  function retornarID($sql)
+                  {
+                      global $con;
+                      $query = $con->prepare($sql);
+                      $query->execute();
+                      $id = $con->lastInsertId();
+                      return $id;
+                  }
+
+                  function limpiarCadena($str)
+                  {
+                      $str = ucwords(mb_strtolower($str, 'UTF-8'));
+                      $str_simple = str_replace("'", "", $str);
+                      $str_doble = str_replace('"', "", $str_simple);
+                      $str_final = htmlspecialchars($str_doble);
+                      return trim(filter_var($str_final, FILTER_SANITIZE_STRING));
+                  }
+
+                  function validarEmail($email)
+                  {
+                      $str_final = htmlspecialchars($email);
+                      return trim(filter_var($str_final, FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL));
+                  }
+              }
+
+              $sql = "SELECT * FROM ayb";
+              $result = ejecutarConsulta($sql);
+              while ($f = $result->fetch(PDO::FETCH_OBJ)) {
+                  $arreglo = json_decode($f->notas, true);
+                  var_dump( $arreglo);
+              }
+?>
+    
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

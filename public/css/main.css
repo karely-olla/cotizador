@@ -937,3 +937,51 @@ input[type="number"]:focus{
 
 
 
+/* Estilos para las ordenes de servicio */
+
+/* estilos para categoria alimentos y bebidas */
+.food_all h5,
+.food_all .col-lg-4{
+	margin: 0px auto;
+	padding: 0px;
+}
+
+.food_all .pane-service{
+	padding: 10px;
+	border-bottom: 3px solid #000;
+}
+.food_all .pane-service:hover{
+	background: #ececec;
+}
+.food_all .pane-service textarea{
+	width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	height: 150px;
+	min-height: 100px;
+	max-height: 300px;
+}
+
+.food_all .pane-service .input-separate{
+	position: relative;
+	margin: 12px auto;
+}
+.pane-service .input-separate .btn-danger.btn-remove{
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: -8px;
+	text-align: center;
+	display: block;
+	left: auto;
+	right: 0px;
+	border-radius: 50%;
+}
+.pane-service .input-separate .btn-danger.btn-remove i{
+	display: block;
+	text-align: center;
+	font-size: 14px;
+    text-align: center;
+    margin-left: -5px;
+    margin-top: -2px;
+}

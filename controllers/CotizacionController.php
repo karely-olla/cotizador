@@ -3793,11 +3793,80 @@ switch ($_GET['op']) {
 			$response = [
 				'success'=>true,
 				'token'=>$jwt->token,
-				'clave'=>$jwt->clave
+				'clave'=>$jwt->clave,
+				'id'=>$jwt->id
 			];
 		}else{
 			$response = [
 				'success'=>false
+			];
+		}
+		echo json_encode($response);
+	break;
+
+	// Devuelve los alimentos y servicios de la cotizacion por el ID
+	case 'foodCotizacion':
+		$id = $_POST['id'];
+		$rspta = $cotizacion->foodCotizacion($id);
+		if($rspta) {
+			$foodTmpl='';
+			while ($cot = $rspta->fetchAll(PDO::FETCH_OBJ)) {
+				$dias = array();
+				foreach ($cot as $f) {
+					$dias[] = $f->dia;
+				}
+
+				$dias = array_values(array_unique($dias));
+				$cont = 0;
+				if (count($dias) == 1) {
+					
+				} else {
+					foreach ($cot as $f) :
+						
+						$dia_actual = $f->dia;
+						if ($dia_actual == $dias[$cont]) :
+							$foodTmpl .= '<h3>' . $f->dia . '</h3>';
+							$cont++;
+							if ($cont == count($dias)) {
+								$cont = 0;
+							}
+						endif;
+						$foodTmpl .= '<div class="pane-service" id="s_'.$f->id.'">';
+							$foodTmpl .= '<h5>' . $f->subcategoria . '</h5>';
+							$foodTmpl .= '<h5>' . $f->servicio . '</h5>';
+							$foodTmpl .= '<h5>Cantidad: ' . $f->cantidad . '</h5>';
+							$foodTmpl .= '<div class="col-lg-4">
+											<input type="hidden" name="id_servicio[]" value="'.$f->id.'">
+											<div class="form-group">
+												<label>Lugar:</label>
+												<input type="text" name="place[]" class="form-control" placeholder="Designa el lugar" >
+											</div>
+											<div class="form-group">
+												<label>Hora:</label>
+												<input type="time" name="hour[]" class="form-control" >
+											</div>
+											<div class="form-group">
+												<label>Menu:</label>
+												<textarea class="form-control" name="menu[]" placeholder="Describe el Menu" ></textarea>
+											</div>
+										</div>
+										<div class="clearfix"></div>';
+							$foodTmpl .= '<h4>Notas:</h4>
+								<label for="">Agregar 
+								<a href="#" id="btAdd" onclick="addNoteFood(event, \'s_'.$f->id.'\')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+								</label>
+								<input type="text" name="note_food['.$f->id.'][]" class="form-control" placeholder="Agregar nota">';
+						$foodTmpl .= '</div>';
+					endforeach;
+				}
+			}
+			$response = [
+				'success'=>true,
+				'tmpl'=>$foodTmpl
+			];
+		} else {
+			$response = [
+				'success' => false
 			];
 		}
 		echo json_encode($response);

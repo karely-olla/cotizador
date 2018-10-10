@@ -491,9 +491,17 @@ class Cotizador
 
 	public function GetTokens($id)
 	{
-		$sql = "SELECT token, clave FROM cotizaciones WHERE id='$id'";
+		$sql = "SELECT id, token, clave FROM cotizaciones WHERE id='$id'";
 		return ejecutarConsulta($sql);
 	}
+
+	public function foodCotizacion($id){
+		$sql = "SELECT cd.id, cd.id_empresa,cd.dia,cd.id_servicio,s.subcategoria, cd.servicio, cd.cantidad 
+				FROM `cotizacion_dia` as cd INNER JOIN `servicios` as s 
+				ON cd.id_servicio=s.id WHERE cd.id_empresa = '$id' ";
+		return ejecutarConsulta($sql);
+	}
+	
 }
 
 
