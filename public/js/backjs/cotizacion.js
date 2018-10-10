@@ -416,7 +416,20 @@ function delete_cot(id)
 
 
 // Confirmar Cotizacion
-function confirmar(id){ $("#frm_confirm_cot #id").val(id); $("#modal_confirm_cot").modal("show");}
+function confirmar(id){ 
+  $.post(dominio+'controllers/CotizacionController.php?op=jwToken', {id:id},
+    function (data) {
+      data=JSON.parse(data);
+      if (data.success) {
+        $("#btn_generate_service").attr('href',`order-service.php?tkn=${data.token}&clave=${data.clave}`);
+      } else{
+        $("#btn_generate_service").attr('disabled',`disabled`);
+      }
+    }
+  );
+  $("#frm_confirm_cot #id").val(id); $("#modal_confirm_cot").modal("show");
+}
+
 function mostrarFilename(file){
   if(file.files.length>0){ 
     $("#frm_confirm_cot .name_file").text(file.files[0].name);

@@ -3782,6 +3782,26 @@ switch ($_GET['op']) {
 		}
 		echo json_encode($response);
 	break;
+	
+
+	//devolver claves y token
+	case'jwToken':
+		$id=$_POST['id'];
+		$rspta=$cotizacion->GetTokens($id);
+		if ($rspta) {
+			$jwt=$rspta->fetch(PDO::FETCH_OBJ);
+			$response = [
+				'success'=>true,
+				'token'=>$jwt->token,
+				'clave'=>$jwt->clave
+			];
+		}else{
+			$response = [
+				'success'=>false
+			];
+		}
+		echo json_encode($response);
+	break;
 
 }
 

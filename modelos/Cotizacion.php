@@ -488,6 +488,12 @@ class Cotizador
 			return ['success'=>false];
 		}
 	}
+
+	public function GetTokens($id)
+	{
+		$sql = "SELECT token, clave FROM cotizaciones WHERE id='$id'";
+		return ejecutarConsulta($sql);
+	}
 }
 
 

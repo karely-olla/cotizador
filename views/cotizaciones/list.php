@@ -432,7 +432,7 @@
          <div class="modal-body">
             <input type="hidden" name="id" id="id">
             <div class="form-group">
-              <label for="">Sube la Orden de Servicio</label>
+              <label for="">Orden de Servicio</label>
               <label for="orden" class="file-label btn btn-primary btn-block">
                 Elige el archivo
                 <input type="file" id="orden" onchange="mostrarFilename(this)" name="orden"  required>
@@ -445,6 +445,12 @@
                   <span></span>
                 </div>
               </div>
+            </div>
+            <div class="text-center">Ó</div>
+            <div class="form-group">
+              <a id="btn_generate_service" class="btn btn-block btn-success">
+                Generar Orden
+              </a>
             </div>
          </div> 
          <div class="modal-footer">
