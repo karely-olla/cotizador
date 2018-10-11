@@ -3831,6 +3831,42 @@ switch ($_GET['op']) {
 								$cont = 0;
 							}
 						endif;
+						$Select;
+						switch ($f->subcategoria) {
+							case 'Desayuno':
+							case 'Comida':
+							case 'Cena':
+									$Select='<select name="place[]" class="form-control">
+									<option value="Restaurant Calandria">Restaurant Calandria</option>
+									<option value="Restaurant Morillos">Restaurant Morillos</option>
+									<option value="Bar Gato Montes">Bar Gato Montes</option>
+									<option value="Jardin del Bar">Jardin del Bar</option>
+									<option value="Palapa">Palapa</option>
+								  </select>';
+								break;
+							
+							case 'Equipo Audiovisual':
+							case 'Coffe Break Tradicional':
+							case 'Box Lunch':
+									$Select='<select name="place[]" class="form-control">
+									<option value="Salon Pinos">Salon Pinos</option>
+									<option value="Salon Sauces">Salon Sauces</option>
+									<option value="Salon Fresnos">Salon Fresnos</option>
+									<option value="Casa Club (Medio)">Casa Club (Medio)</option>
+									<option value="Casa Club (Completo)">Casa Club (Completo)</option>
+								  </select>';
+								break;
+
+							case 'Renta de Salon sin Coffe Break':
+									$Select='<select name="place[]" class="form-control">
+									<option value="Salon Pinos">Salon Pinos</option>
+									<option value="Salon Sauces">Salon Sauces</option>
+								</select>';								
+								break;
+							default:
+									$Select='';
+								break;
+						}
 						$foodTmpl .= '<div class="pane-service" id="s_'.$f->id.'">';
 							$foodTmpl .= '<h5>' . $f->subcategoria . '</h5>';
 							$foodTmpl .= '<h5>' . $f->servicio . '</h5>';
@@ -3839,7 +3875,7 @@ switch ($_GET['op']) {
 											<input type="hidden" name="id_servicio[]" value="'.$f->id.'">
 											<div class="form-group">
 												<label>Lugar:</label>
-												<input type="text" name="place[]" class="form-control" placeholder="Designa el lugar" >
+												'.$Select.'
 											</div>
 											<div class="form-group">
 												<label>Hora:</label>

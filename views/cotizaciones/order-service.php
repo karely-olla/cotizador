@@ -52,7 +52,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
-          </form>   
+          </form> 
+           
+          
         <?php     
           try {
             $con = new PDO('mysql:host=localhost; dbname=cotizador; charset=utf8', 'root', '');

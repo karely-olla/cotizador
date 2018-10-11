@@ -68,17 +68,17 @@ if($_POST){
                     'id' => $id,
                     'nota' => $nota
                 ];                
-                if ($nota =="") {
-                    
-                }else{
-                    $sqlUpd = "UPDATE `ayb` SET `notas`= '".json_encode($arregloNotas)."' WHERE id_servicio = '$id' ";
-                    // echo $sqlUpd;
-                    // die();
-                    $result2 = ejecutarConsulta($sqlUpd);
-                    $arregloNotas = [];
-                }
                 $n++;
             }
+                        if ($nota =="") {
+                            
+                        }else{
+                            $sqlUpd = "UPDATE `ayb` SET `notas`= '".json_encode($arregloNotas)."' WHERE id_servicio = '$id' ";
+                            // echo $sqlUpd;
+                            // die();
+                            $result2 = ejecutarConsulta($sqlUpd);
+                            $arregloNotas = [];
+                        }
         }
         echo"<pre>";
             var_dump($arregloNotas);
