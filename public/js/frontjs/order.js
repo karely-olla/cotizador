@@ -3,7 +3,7 @@ function addNote(e, padre){
     e.preventDefault();
     // Añadir caja de texto.
     $(`#${padre}`).append(`<div class="input-separate">
-        <input type=text name="funciones[]" class="form-control" required placeholder="Agregar Nota" />
+        <input type=text name="note_${padre}[]" class="form-control"  placeholder="Agregar Nota" />
         <a href="#" onclick="removeNote(event, this)" class="btn btn-sm btn-danger btn-remove">
             <i class="fa fa-times"></i>
         </a>
@@ -49,26 +49,46 @@ function construir_areas(areas){
     for (let i = 0; i < areas.length; i++) {
         const element = areas[i];
         switch (element) {
-            case 'reception':
+            case 'reception':        
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">                        
-                        <h2>Recepcion:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_recepcion" class="form-control" placeholder="Agregar nota">
-                    </div>  
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Recepcion</h3>
+                            </div>
+                            <div class="box-body" style="">
+                                <label>Describe las Funciones:</label>
+                                <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_reception[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
+                    </div>
                 `; 
             break; 
             case 'food':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Alimentos y Bebidas: ID: ${id}</h2>
-                        <div class="food_all">                            
-                        </div>                        
-                    </div>  
-                `;                               
+                <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Alimentos y Bebidas | Clave: C-RM-${id}</h3>
+                        </div>
+                        <div class="box-body">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                            <div class="food_all">
+
+                            </div>                             
+                        </div>
+                    </div>
+                </div>`;                               
                 $.post(dominio + "controllers/CotizacionController.php?op=foodCotizacion", { id: id }, 
                     function(data) {
                         data = JSON.parse(data);                                            
@@ -80,73 +100,145 @@ function construir_areas(areas){
             break; 
             case 'support':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Mantenimiento:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_support" class="form-control" placeholder="Agregar nota">
-                    </div>  
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Mantenimiento</h3>
+                            </div>
+                            <div class="box-body" style="">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_support[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
+                    </div> 
                 `; 
             break; 
             case 'buy':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Compras:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_buy" class="form-control" placeholder="Agregar nota">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Compras</h3>
+                            </div>
+                            <div class="box-body" style="">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_buy[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
                     </div>  
                 `; 
             break; 
             case 'mrs_keys':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Ama de Llaves:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_mrs_keys" class="form-control" placeholder="Agregar nota">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Ama de Llaves</h3>
+                            </div>
+                            <div class="box-body" style="">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_mrs_keys[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
                     </div>  
                 `; 
             break; 
             case 'golf':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Campo de Golf:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_golf" class="form-control" placeholder="Agregar nota">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Campo de Golf</h3>
+                            </div>
+                            <div class="box-body" style="">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_golf[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
                     </div>  
                 `; 
             break; 
             case 'garden':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Jardineria:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_garden" class="form-control" placeholder="Agregar nota">
-                    </div>  
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Jardineria</h3>
+                            </div>
+                            <div class="box-body" style="">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_garden[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
+                    </div> 
                 `; 
             break; 
             case 'sell':
                 template += `
-                    <div class="form-group col-lg-12" id="a_${element}">
-                        <h2>Ventas:</h2>
-                        <h4>Notas:</h4>
-                        <label for="">Agregar 
-                        <a href="#" id="btAdd" onclick="addNote(event, 'a_${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-                        </label>
-                        <input type="text" name="note_sell" class="form-control" placeholder="Agregar nota">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-height">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Ventas</h3>
+                            </div>
+                            <div class="box-body" style="">
+                            <label>Describe las Funciones:</label>
+                            <textarea name="description[]" class="form-control"></textarea>
+                                <fieldset id="${element}">
+                                    <legend>Notas</legend>
+                                    <label for="">Agregar
+                                    <a href="#" id="btAdd" onclick="addNote(event, '${element}')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
+                                    </label>
+                                    <input type="text" name="note_sell[]" class="form-control" placeholder="Agregar nota">
+                                </fieldset> 
+                            </div>
+                            <div class="box-footer" style="">
+                            </div>
+                        </div>
                     </div>  
                 `; 
             break;        

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2018 a las 23:01:36
+-- Tiempo de generación: 12-10-2018 a las 22:04:04
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ayb` (
   `id` int(11) NOT NULL,
-  `id_empresa` int(11) NOT NULL,
+  `id_departamento` int(11) NOT NULL,
   `id_servicio` int(11) NOT NULL,
   `lugar` varchar(150) NOT NULL,
   `hora` time NOT NULL,
@@ -42,72 +42,12 @@ CREATE TABLE `ayb` (
 -- Volcado de datos para la tabla `ayb`
 --
 
-INSERT INTO `ayb` (`id`, `id_empresa`, `id_servicio`, `lugar`, `hora`, `menu`, `notas`) VALUES
-(1, 114, 1528, 'un lugar', '13:01:00', 'jhgfhsfhgdsdcs', '{\"notas\":{\"2\":{\"id\":1528,\"nota\":\"utlima nota del primer\"}}}'),
-(2, 114, 1529, 'gato montes', '20:35:00', 'djhsg fdjhsgjhdgjhsgjh', '{\"notas\":{\"5\":{\"id\":1529,\"nota\":\"ultima nota del segundoi\"}}}'),
-(3, 114, 1530, '', '00:00:00', '', NULL),
-(4, 114, 1531, '', '00:00:00', '', NULL),
-(5, 114, 1532, '', '00:00:00', '', NULL),
-(6, 114, 1533, '', '00:00:00', '', NULL),
-(7, 114, 1534, '', '00:00:00', '', NULL),
-(8, 114, 1535, '', '00:00:00', '', NULL),
-(9, 114, 1536, '', '00:00:00', '', NULL),
-(10, 114, 1537, '', '00:00:00', '', NULL),
-(11, 114, 1538, '', '00:00:00', '', NULL),
-(12, 114, 1539, '', '00:00:00', '', NULL),
-(13, 114, 1540, '', '00:00:00', '', NULL),
-(14, 114, 1528, 'un lugar', '13:01:00', 'jhgfhsfhgdsdcs', '{\"notas\":{\"2\":{\"id\":1528,\"nota\":\"utlima nota del primer\"}}}'),
-(15, 114, 1529, 'gato montes', '20:35:00', 'djhsg fdjhsgjhdgjhsgjh', '{\"notas\":{\"5\":{\"id\":1529,\"nota\":\"ultima nota del segundoi\"}}}'),
-(16, 114, 1530, '', '00:00:00', '', NULL),
-(17, 114, 1531, '', '00:00:00', '', NULL),
-(18, 114, 1532, '', '00:00:00', '', NULL),
-(19, 114, 1533, '', '00:00:00', '', NULL),
-(20, 114, 1534, '', '00:00:00', '', NULL),
-(21, 114, 1535, '', '00:00:00', '', NULL),
-(22, 114, 1536, '', '00:00:00', '', NULL),
-(23, 114, 1537, '', '00:00:00', '', NULL),
-(24, 114, 1538, '', '00:00:00', '', NULL),
-(25, 114, 1539, '', '00:00:00', '', NULL),
-(26, 114, 1540, '', '00:00:00', '', NULL),
-(27, 114, 1528, 'un lugar', '13:01:00', 'jhgfhsfhgdsdcs', '{\"notas\":{\"2\":{\"id\":1528,\"nota\":\"utlima nota del primer\"}}}'),
-(28, 114, 1529, 'gato montes', '20:35:00', 'djhsg fdjhsgjhdgjhsgjh', '{\"notas\":{\"5\":{\"id\":1529,\"nota\":\"ultima nota del segundoi\"}}}'),
-(29, 114, 1530, '', '00:00:00', '', NULL),
-(30, 114, 1531, '', '00:00:00', '', NULL),
-(31, 114, 1532, '', '00:00:00', '', NULL),
-(32, 114, 1533, '', '00:00:00', '', NULL),
-(33, 114, 1534, '', '00:00:00', '', NULL),
-(34, 114, 1535, '', '00:00:00', '', NULL),
-(35, 114, 1536, '', '00:00:00', '', NULL),
-(36, 114, 1537, '', '00:00:00', '', NULL),
-(37, 114, 1538, '', '00:00:00', '', NULL),
-(38, 114, 1539, '', '00:00:00', '', NULL),
-(39, 114, 1540, '', '00:00:00', '', NULL),
-(40, 114, 1528, 'un lugar', '13:01:00', 'jhgfhsfhgdsdcs', '{\"notas\":{\"2\":{\"id\":1528,\"nota\":\"utlima nota del primer\"}}}'),
-(41, 114, 1529, 'gato montes', '20:35:00', 'djhsg fdjhsgjhdgjhsgjh', '{\"notas\":{\"5\":{\"id\":1529,\"nota\":\"ultima nota del segundoi\"}}}'),
-(42, 114, 1530, '', '00:00:00', '', NULL),
-(43, 114, 1531, '', '00:00:00', '', NULL),
-(44, 114, 1532, '', '00:00:00', '', NULL),
-(45, 114, 1533, '', '00:00:00', '', NULL),
-(46, 114, 1534, '', '00:00:00', '', NULL),
-(47, 114, 1535, '', '00:00:00', '', NULL),
-(48, 114, 1536, '', '00:00:00', '', NULL),
-(49, 114, 1537, '', '00:00:00', '', NULL),
-(50, 114, 1538, '', '00:00:00', '', NULL),
-(51, 114, 1539, '', '00:00:00', '', NULL),
-(52, 114, 1540, '', '00:00:00', '', NULL),
-(53, 114, 1528, 'un lugar', '13:01:00', 'jhgfhsfhgdsdcs', '{\"notas\":{\"2\":{\"id\":1528,\"nota\":\"utlima nota del primer\"}}}'),
-(54, 114, 1529, 'gato montes', '20:35:00', 'djhsg fdjhsgjhdgjhsgjh', '{\"notas\":{\"5\":{\"id\":1529,\"nota\":\"ultima nota del segundoi\"}}}'),
-(55, 114, 1530, '', '00:00:00', '', NULL),
-(56, 114, 1531, '', '00:00:00', '', NULL),
-(57, 114, 1532, '', '00:00:00', '', NULL),
-(58, 114, 1533, '', '00:00:00', '', NULL),
-(59, 114, 1534, '', '00:00:00', '', NULL),
-(60, 114, 1535, '', '00:00:00', '', NULL),
-(61, 114, 1536, '', '00:00:00', '', NULL),
-(62, 114, 1537, '', '00:00:00', '', NULL),
-(63, 114, 1538, '', '00:00:00', '', NULL),
-(64, 114, 1539, '', '00:00:00', '', NULL),
-(65, 114, 1540, '', '00:00:00', '', NULL);
+INSERT INTO `ayb` (`id`, `id_departamento`, `id_servicio`, `lugar`, `hora`, `menu`, `notas`) VALUES
+(1, 2, 1399, 'Restaurant Calandria', '13:00:00', 'menu comida ', '{\"notas\":[{\"nota\":\"nota ayb comida 1\"},{\"nota\":\"nota ayb comida 2\"}]}'),
+(2, 2, 1400, 'Restaurant Morillos', '20:35:00', 'menu cena', '{\"notas\":[{\"nota\":\"nota ayb cena 1\"},{\"nota\":\"nota ayb cena 2\"}]}'),
+(3, 2, 1401, 'Salon Sauces', '09:00:00', 'menu coffe', '{\"notas\":[{\"nota\":\"nota ayb coffe 1\"},{\"nota\":\"nota ayb coffe 2\"}]}'),
+(4, 2, 1402, 'Salon Pinos', '09:30:00', 'renta de salon sin coffe', '{\"notas\":[{\"nota\":\"nota ayb renta de salon 1\"},{\"nota\":\"nota ayb renta de salon 2\"}]}'),
+(5, 2, 1403, 'Bar Gato Montes', '09:40:00', 'menu desayuno', '{\"notas\":[{\"nota\":\"nota ayb desayuno 1\"},{\"nota\":\"nota ayb desayuno 2\"}]}');
 
 -- --------------------------------------------------------
 
@@ -216,11 +156,11 @@ INSERT INTO `cotizaciones` (`id`, `id_usuario`, `empresa`, `estado`, `municipio`
 (75, 4, 'Pepsico', 'Nuevo León', 'Monterrey', 'evaalejandra.calderongarcia@pepsico.com', '8112556328', 'Eva Calderon', '2018-09-20', '2018-09-22', '[{\"Jueves 20 de Septiembre\":{\"habitacion sencilla\":{\"cantidad\":\"3\",\"tarifa\":\"1092.00\"},\"habitacion doble\":{\"cantidad\":\"13\",\"tarifa\":\"1092.00\"}}},{\"Viernes 21 de Septiembre\":{\"habitacion sencilla\":{\"cantidad\":\"1\",\"tarifa\":\"1471.00\"},\"habitacion doble\":{\"cantidad\":\"13\",\"tarifa\":\"1471.00\"}}}]', 2, 3, NULL, NULL, '96403.00', 'ab6ceaedd3e080fe91d6a0455a4ca6485d3150d184c64f9a319197a75cc3cf51048bb8d53774ac6205b1271959efa89cfb95756c7792dfa8300419f603b67e348b0af6720a5563d7c6c30a42b3f27edd423f483211e659636a668fd96e2696e5244e5bf978a83e78827388b501bd6c1a0cf78bde0f86239be2c853dd567f3425', 'orden_c-rm-75_17-09-2018.pdf', 'Evelyn_C-RM-75.pdf', 'CG_5b904dbe39486', 'Special', '2018-10-05 16:42:22', '2018-09-05 16:42:22', '2018-09-18 16:52:38', 1),
 (76, 1, 'Grupro Calidra', 'Coahuila', 'Torreón', 'sdelacruz@calidra.com.mx', '8717221322', 'Sara De La Cruz', '2018-10-15', '2018-10-17', '{\"habitacion sencilla\":{\"cantidad\":\"11\",\"tarifa\":\"1092.00\"}}', 2, 3, 11, 11, '44278.00', '696117bddaa25479458d72c3e2c37e0f99a3cfd5ac8e1a37bb393386b3be8f61d0971a019e3a6fac4789f9c0cb1d84c55c02086f69fd2f44903ee841ff4b406cb6f9f7ebbc51e6a2e6340a95e465bf44507afbbb36cb4c6095de4cc235267daa08cbe1cc227b64316422e7ba407782cafb5570ba2028024291021ed265748f83', NULL, 'Ing. Ignacio_C-RM-76.pdf', 'CG_5b91ac352da89', 'Complete', '2018-10-06 17:37:41', '2018-09-06 17:37:41', '2018-09-24 13:59:42', 3),
 (77, 1, 'Effem', 'Nuevo León', 'Monterrey', 'maria.onofre@effem.com', '8181243400', 'Maria Guadalupe Onofre R.', '2018-10-11', '2018-10-12', '{\"habitacion doble\":{\"cantidad\":\"20\",\"tarifa\":\"1092.00\"}}', 1, 2, 20, 40, '63129.72', 'a528a6fe7ffadd7cf662dc79caa0e06043778f42f32cda6d4a0b5cc5e14f9b5dc226b2833d071ef43a17e49695b6d1fbae0a4824a703c783eac53041544d7c944a5d96493a47300663fbe41d3a2348922f4daedf684a8cfbe61996b56913922e030b84cade9d3d76f0b495a0313104f98fb7b7f6fdd7205185d722f68e518bcf', NULL, 'Ing. Ignacio_C-RM-77.pdf', 'CG_5b940bd92d511', 'Complete', '2018-10-08 12:50:17', '2018-09-08 12:50:17', '2018-09-14 10:02:13', 3),
-(78, 3, 'Infinity Travels', 'Nuevo León', 'Monterrey', 'info@infinitytravels.com.mx', '8129331864', 'Joel Villarreal', '2018-10-27', '2018-10-28', '{\"habitacion doble\":{\"cantidad\":\"23\",\"tarifa\":\"1471.00\"}}', 1, 2, 23, 46, '52635.00', '45829808deb69b74ecc9f5e2c24ea531f1cf0f238d30736fd64de404629adafc2d01b1a82f1f3eafe3a2c58b04f4699fb82f6b1bbdd15308feaf7b77f74c0468317dd49a8821e8440bc32b5e43da0fccd8ae10edce335383e64882b7db3ec13ce77732ece2043b97b8a2e9d15ccc99f6f79480b4c64c39aebf14246e28317af3', NULL, NULL, 'CG_5b819eab87545', 'Complete', '2018-10-10 16:20:00', '2018-09-10 16:20:00', '2018-09-10 16:20:00', 0),
-(79, 1, 'Adient', 'Coahuila', 'Saltillo', 'juana.ines.garcia.prado@adient.com', '8449863028', 'Juana I. García Prado', '2018-10-19', '2018-10-20', '{\"habitacion sencilla\":{\"cantidad\":\"1\",\"tarifa\":\"1471.00\"},\"habitacion doble\":{\"cantidad\":\"32\",\"tarifa\":\"1471.00\"}}', 1, 2, 33, 65, '126459.00', '6f8f5550790b8b82d4109a5428fd5b91e009f2845407011665d96d6c7e466d71e81b7ae826b8c7a982f8497c580460ee183801495df50077130066c25cadebd1fd057208573abe486775deb62cd8defe4185b5ccd8ab0d760a9426a12792264c4cbd42eed62844ef0b8c8b7f0484764d87dc11de8a19d361f59dbcb5b17e3bff', NULL, 'Ing. Ignacio_C-RM-79.pdf', 'CG_5b97026e0594b', 'Complete', '2018-10-10 18:46:54', '2018-09-10 18:46:54', '2018-09-10 18:52:39', 0),
-(80, 4, 'Or Clinica', 'Nuevo León', 'Montemorelos', 'info@orclinica.com', '8712951853', 'Monserrat Marquez', '2018-11-07', '2018-11-08', '{\"habitacion doble\":{\"cantidad\":\"35\",\"tarifa\":\"1092.00\"}}', 1, 2, 35, 70, '114887.00', '715dd516e2fec4d2c37c2d09bd59d630adfd158804ec2248258d4611fe08f7ab8135c486362e1104c8c254d69105a9d63091bc48bd7eae4e6027e411cdb86ba03867410d95b7b74b7fd0f56b301cb88e2eddd3edab0cd803f3ff844971bc8161e883ac6a636f87efa55b44526d550511f202a972bcacbf32b74e7224d1f261e3', NULL, NULL, 'CG_5b9835a92992f', 'Complete', '2018-10-11 16:37:45', '2018-09-11 16:37:45', '2018-09-11 16:37:45', 0),
-(81, 4, 'Pro Futuro', 'Coahuila', 'Torreón', 'alejandromexico50@me.com', '6561731215', 'Alejandro Rodriguez', '2018-11-26', '2018-11-27', '{\"habitacion doble\":{\"cantidad\":\"7\",\"tarifa\":\"1092.00\"}}', 1, 2, 7, 14, '14866.00', '9924353fb3e2dfe963f5f5d1c7f1b8a29fe69f06867a8d533912ccb0e988515d04a7f4fec56280ec4ba17b08f7c6009e780209015efb5e30ac30e5866c36fa544531416085fdcfbd1502702cbd975768ea37083b1cb2f2b24aadcbf88ee2cb217c1f35379d22f70c38ffb5a34fb8da0fa5725fee1c787ab54afbc883971cc51e', NULL, NULL, 'CG_5b98377342959', 'Complete', '2018-10-11 16:45:23', '2018-09-11 16:45:23', '2018-09-11 16:45:23', 0),
-(82, 1, 'Prof. En Convenciones - Mead Johnson', 'Distrito Federal', 'Gustavo A. Madero', 'gustavomiranda@proconvenciones.com', '5590003400', 'Gustavo Miranda', '2018-11-30', '2018-12-02', '{\"habitacion sencilla\":{\"cantidad\":\"80\",\"tarifa\":\"1471.00\"},\"habitacion doble\":{\"cantidad\":\"5\",\"tarifa\":\"1471.00\"}}', 2, 3, 85, 90, '420188.00', '64db9c52b2941d74211ed78e6d7ed1bc432bcbc67a0770de3eb09df2b4e3f34ce66a3efdf31994664d45aa3681f8bf04708db9f92d153fdf99213ce47375d1c1656e3e83516bfbb20a07a62842cc5fff5c6b9afafbfc7a5f03ac98aa23595ba85d384d02dd373ff6351be1eeefdd3c5956657c388614641f02467e75483df243', NULL, 'Ing. Ignacio_C-RM-82.pdf', 'CG_5b9851071a835', 'Complete', '2018-10-11 18:34:31', '2018-09-11 18:34:31', '2018-09-14 10:51:45', 0),
+(78, 3, 'Infinity Travels', 'Nuevo León', 'Monterrey', 'info@infinitytravels.com.mx', '8129331864', 'Joel Villarreal', '2018-10-27', '2018-10-28', '{\"habitacion doble\":{\"cantidad\":\"23\",\"tarifa\":\"1471.00\"}}', 1, 2, 23, 46, '52635.00', '45829808deb69b74ecc9f5e2c24ea531f1cf0f238d30736fd64de404629adafc2d01b1a82f1f3eafe3a2c58b04f4699fb82f6b1bbdd15308feaf7b77f74c0468317dd49a8821e8440bc32b5e43da0fccd8ae10edce335383e64882b7db3ec13ce77732ece2043b97b8a2e9d15ccc99f6f79480b4c64c39aebf14246e28317af3', NULL, NULL, 'CG_5b819eab87545', 'Complete', '2018-10-10 16:20:00', '2018-09-10 16:20:00', '2018-09-10 16:20:00', 3),
+(79, 1, 'Adient', 'Coahuila', 'Saltillo', 'juana.ines.garcia.prado@adient.com', '8449863028', 'Juana I. García Prado', '2018-10-19', '2018-10-20', '{\"habitacion sencilla\":{\"cantidad\":\"1\",\"tarifa\":\"1471.00\"},\"habitacion doble\":{\"cantidad\":\"32\",\"tarifa\":\"1471.00\"}}', 1, 2, 33, 65, '126459.00', '6f8f5550790b8b82d4109a5428fd5b91e009f2845407011665d96d6c7e466d71e81b7ae826b8c7a982f8497c580460ee183801495df50077130066c25cadebd1fd057208573abe486775deb62cd8defe4185b5ccd8ab0d760a9426a12792264c4cbd42eed62844ef0b8c8b7f0484764d87dc11de8a19d361f59dbcb5b17e3bff', NULL, 'Ing. Ignacio_C-RM-79.pdf', 'CG_5b97026e0594b', 'Complete', '2018-10-10 18:46:54', '2018-09-10 18:46:54', '2018-09-10 18:52:39', 3),
+(80, 4, 'Or Clinica', 'Nuevo León', 'Montemorelos', 'info@orclinica.com', '8712951853', 'Monserrat Marquez', '2018-11-07', '2018-11-08', '{\"habitacion doble\":{\"cantidad\":\"35\",\"tarifa\":\"1092.00\"}}', 1, 2, 35, 70, '114887.00', '715dd516e2fec4d2c37c2d09bd59d630adfd158804ec2248258d4611fe08f7ab8135c486362e1104c8c254d69105a9d63091bc48bd7eae4e6027e411cdb86ba03867410d95b7b74b7fd0f56b301cb88e2eddd3edab0cd803f3ff844971bc8161e883ac6a636f87efa55b44526d550511f202a972bcacbf32b74e7224d1f261e3', NULL, NULL, 'CG_5b9835a92992f', 'Complete', '2018-10-11 16:37:45', '2018-09-11 16:37:45', '2018-09-11 16:37:45', 3),
+(81, 4, 'Pro Futuro', 'Coahuila', 'Torreón', 'alejandromexico50@me.com', '6561731215', 'Alejandro Rodriguez', '2018-11-26', '2018-11-27', '{\"habitacion doble\":{\"cantidad\":\"7\",\"tarifa\":\"1092.00\"}}', 1, 2, 7, 14, '14866.00', '9924353fb3e2dfe963f5f5d1c7f1b8a29fe69f06867a8d533912ccb0e988515d04a7f4fec56280ec4ba17b08f7c6009e780209015efb5e30ac30e5866c36fa544531416085fdcfbd1502702cbd975768ea37083b1cb2f2b24aadcbf88ee2cb217c1f35379d22f70c38ffb5a34fb8da0fa5725fee1c787ab54afbc883971cc51e', NULL, NULL, 'CG_5b98377342959', 'Complete', '2018-10-11 16:45:23', '2018-09-11 16:45:23', '2018-09-11 16:45:23', 3),
+(82, 1, 'Prof. En Convenciones - Mead Johnson', 'Distrito Federal', 'Gustavo A. Madero', 'gustavomiranda@proconvenciones.com', '5590003400', 'Gustavo Miranda', '2018-11-30', '2018-12-02', '{\"habitacion sencilla\":{\"cantidad\":\"80\",\"tarifa\":\"1471.00\"},\"habitacion doble\":{\"cantidad\":\"5\",\"tarifa\":\"1471.00\"}}', 2, 3, 85, 90, '420188.00', '64db9c52b2941d74211ed78e6d7ed1bc432bcbc67a0770de3eb09df2b4e3f34ce66a3efdf31994664d45aa3681f8bf04708db9f92d153fdf99213ce47375d1c1656e3e83516bfbb20a07a62842cc5fff5c6b9afafbfc7a5f03ac98aa23595ba85d384d02dd373ff6351be1eeefdd3c5956657c388614641f02467e75483df243', NULL, 'Ing. Ignacio_C-RM-82.pdf', 'CG_5b9851071a835', 'Complete', '2018-10-11 18:34:31', '2018-09-11 18:34:31', '2018-09-14 10:51:45', 3),
 (83, 1, 'Radiocare', 'Nuevo León', 'Monterrey', 'administracion@c-corp.mx', '8183638400', 'Rosa Ma. Hernández B.', '2018-11-13', '2018-11-16', '{\"habitacion sencilla\":{\"cantidad\":\"24\",\"tarifa\":\"1092.00\"}}', 3, 4, 24, 24, '141291.00', 'cf47eac10f911e769ec28fda8a8ec61988a1166154d2fcfcfadc958e62a94bef36f2b4f19cd21d1314702bb51df66f05237b94cee9238e1aab6f8f236bb65877ad128a6c95d3614217102dc0ad3551a999bad7910150a48a00b392020240157a10b8a2cd135c69aef1d1fbe717e211d82d0d540ec64a3a1eddf89b0b66bdde26', NULL, 'Ing. Ignacio_C-RM-83.pdf', 'CG_5b99a9f597854', 'Complete', '2018-10-12 19:06:13', '2018-09-12 19:06:13', '2018-09-12 19:08:16', 0),
 (84, 1, 'Daimler', 'Coahuila', 'Saltillo', 'brenda.morales@daimler.com', '8449860501', 'Brenda Morales', '2018-11-01', '2018-11-02', '{\"habitacion doble\":{\"cantidad\":\"27\",\"tarifa\":\"1092.00\"}}', 1, 2, 27, 54, '120778.00', '15ecd3b75e55795b3df5fc59704ebf41fab66a1e44a4db2bcbc2a8d6731994cc761e2c7f7052572600f8e6dacefd3b37e06665cc4fc3bf23852bae33af43e9694c29e06928e5320bc5467f7d29c12d19bc58d22a06d70a5655313d0514d02e9ac7af8b9ded7a80f9b63a857acc298c7a18a00728e0df3ca2b36de53c1f21fd22', NULL, 'Ing. Ignacio_C-RM-84.pdf', 'CG_5ba13dd28ffe2', 'Complete', '2018-10-18 13:02:58', '2018-09-18 13:02:58', '2018-09-19 17:35:47', 0),
 (85, 2, 'Peñoles', 'Coahuila', 'Torreón', 'wendy_rocha@penoles.com.mx', '8717293421', 'Wendy Rocha', '2018-11-20', '2018-11-23', '{\"habitacion sencilla\":{\"cantidad\":\"70\",\"tarifa\":\"1092.00\"}}', 3, 4, 70, 70, '365232.50', '895c7ce01d5cf7a1688d7e9519fc20b39dec825f363f0fee7392a607f6156708b7e5b454b836f9aa0c0e9faefc00f6b3737110a580cbbf7c6f9ed07aa64a37e43fe6997b9ce28398e01d20c0dd955e8c7b8639ba603a303863612528232c451858fa33c4ec15bd012b98bf1efc995933c319e8948e25bd2ace6f10cd389eab84', NULL, 'Nayeli_C-RM-85.pdf', 'CG_5b71f144985cd', 'Complete', '2018-10-18 13:46:19', '2018-09-18 13:46:19', '2018-09-18 13:46:19', 0);
@@ -1118,6 +1058,31 @@ INSERT INTO `cotizacion_dia` (`id`, `id_empresa`, `dia`, `id_servicio`, `servici
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `departamentos`
+--
+
+CREATE TABLE `departamentos` (
+  `id` int(11) NOT NULL,
+  `id_empresa` int(11) NOT NULL,
+  `departamento` varchar(150) NOT NULL,
+  `hora` time DEFAULT NULL,
+  `lugar` varchar(100) DEFAULT NULL,
+  `descripcion` longtext NOT NULL,
+  `notas` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `departamentos`
+--
+
+INSERT INTO `departamentos` (`id`, `id_empresa`, `departamento`, `hora`, `lugar`, `descripcion`, `notas`) VALUES
+(1, 105, 'reception', NULL, NULL, 'descripcion de recepcion', '{\"reception\":[{\"nota\":\"nota de recepciu00f3n 1\"},{\"nota\":\"nota de recepciu00f3n 2\"}]}'),
+(2, 105, 'food', NULL, NULL, '', ''),
+(3, 105, 'support', NULL, NULL, 'descripcion de mtto', '{\"support\":[{\"nota\":\"nota de mtto 1\"},{\"nota\":\"nota de mtto 2\"}]}');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `extras`
 --
 
@@ -1261,18 +1226,6 @@ INSERT INTO `grupos` (`id`, `clave`, `num_cotizaciones`, `ingresos`, `state`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `note_ayb`
---
-
-CREATE TABLE `note_ayb` (
-  `id` int(11) NOT NULL,
-  `id_servicio` int(11) NOT NULL,
-  `nota` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `servicios`
 --
 
@@ -1376,6 +1329,12 @@ ALTER TABLE `cotizacion_dia`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `extras`
 --
 ALTER TABLE `extras`
@@ -1385,12 +1344,6 @@ ALTER TABLE `extras`
 -- Indices de la tabla `grupos`
 --
 ALTER TABLE `grupos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `note_ayb`
---
-ALTER TABLE `note_ayb`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1413,7 +1366,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ayb`
 --
 ALTER TABLE `ayb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `cotizaciones`
@@ -1428,6 +1381,12 @@ ALTER TABLE `cotizacion_dia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1541;
 
 --
+-- AUTO_INCREMENT de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `extras`
 --
 ALTER TABLE `extras`
@@ -1438,12 +1397,6 @@ ALTER TABLE `extras`
 --
 ALTER TABLE `grupos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
-
---
--- AUTO_INCREMENT de la tabla `note_ayb`
---
-ALTER TABLE `note_ayb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`

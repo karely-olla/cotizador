@@ -2762,6 +2762,7 @@ switch ($_GET['op']) {
 				'telefono'=>$fh->telefono,
 				'noches'=>$fh->noches,
 				'dias'=>$fh->dias,
+				'file'=>$fh->file,
 				'estado'=>$fh->state
 			];
 			$total_extras=0;
@@ -3405,44 +3406,51 @@ switch ($_GET['op']) {
 		$resInAuth->execute();
 		$filas = $resInAuth->rowCount();
 
-		if ($filas>0) {
+		if ($filas>0) {			
 			$user = $resInAuth->fetch(PDO::FETCH_OBJ);
-			$archivo = $_FILES['orden'];
-			$ext = new SplFileInfo($archivo['name']);
-			$filename = 'orden_'.str_replace(" ", "_", strtolower('C-RM-'.$user->id.'_'.date('d-m-Y').'.'.$ext->getExtension()));
-			$ext->getExtension();
-			if ($archivo['type'] == "application/pdf" && $ext->getExtension()=='pdf') {				
-				$carepta_destino = '../orden_servicio/';
-
-				$move_ok =move_uploaded_file($_FILES['orden']['tmp_name'], $carepta_destino.$filename);
-				if ($move_ok) {
-					$sql = "UPDATE cotizaciones SET `state` = 1, `orden` = '$filename' WHERE id=".$_POST['id']." && id_usuario =".$_SESSION['iduser']." ";
-					$upd = $con->prepare($sql);
-					$upd->execute();
-					$f = $upd->rowCount();
-					if ($f>0) {
+			if($user->file==null){
+				$response = [
+					'success' => false,
+					'msg' => 'No has enviado aun la cotizacion no puedes confirmarla: ¡HAZ BIEN TU TRABAJO!'
+				];
+			}else{
+				$archivo = $_FILES['orden'];
+				$ext = new SplFileInfo($archivo['name']);
+				$filename = 'orden_'.str_replace(" ", "_", strtolower('C-RM-'.$user->id.'_'.date('d-m-Y').'.'.$ext->getExtension()));
+				$ext->getExtension();
+				if ($archivo['type'] == "application/pdf" && $ext->getExtension()=='pdf') {				
+					$carepta_destino = '../orden_servicio/';
+	
+					$move_ok =move_uploaded_file($_FILES['orden']['tmp_name'], $carepta_destino.$filename);
+					if ($move_ok) {
+						$sql = "UPDATE cotizaciones SET `state` = 1, `orden` = '$filename' WHERE id=".$_POST['id']." && id_usuario =".$_SESSION['iduser']." ";
+						$upd = $con->prepare($sql);
+						$upd->execute();
+						$f = $upd->rowCount();
+						if ($f>0) {
+							$response=[
+								'success'=>true,  
+								'msg'=> 'Cotizacion confirmada'
+							];
+						}else{
+							unlink($carepta_destino.$filename);
+							$response=[
+								'success'=>false,  
+								'msg'=> 'No se pudo confirmar intenta de nuevo'
+							];
+						}				
+					}else{
 						$response=[
 							'success'=>true,  
-							'msg'=> 'Cotizacion confirmada'
+							'msg'=> 'No se pudo subir la orden de servicio intenta mas tarde'
 						];
-					}else{
-						unlink($carepta_destino.$filename);
-						$response=[
-							'success'=>false,  
-							'msg'=> 'No se pudo confirmar intenta de nuevo'
-						];
-					}				
+					}
 				}else{
 					$response=[
-						'success'=>true,  
-						'msg'=> 'No se pudo subir la orden de servicio intenta mas tarde'
+						'success'=>false,  
+						'msg'=> 'Solo se adminten archivos en formato PDF'
 					];
 				}
-			}else{
-				$response=[
-					'success'=>false,  
-					'msg'=> 'Solo se adminten archivos en formato PDF'
-				];
 			}
 		}else{
 			$response=[
@@ -3836,7 +3844,8 @@ switch ($_GET['op']) {
 							case 'Desayuno':
 							case 'Comida':
 							case 'Cena':
-									$Select='<select name="place[]" class="form-control">
+									$Select='<select name="place[]" class="form-control">									
+									<option>--Designa el Lugar--</option>
 									<option value="Restaurant Calandria">Restaurant Calandria</option>
 									<option value="Restaurant Morillos">Restaurant Morillos</option>
 									<option value="Bar Gato Montes">Bar Gato Montes</option>
@@ -3848,7 +3857,8 @@ switch ($_GET['op']) {
 							case 'Equipo Audiovisual':
 							case 'Coffe Break Tradicional':
 							case 'Box Lunch':
-									$Select='<select name="place[]" class="form-control">
+									$Select= '<select name="place[]" class="form-control">
+									<option>--Designa el Lugar--</option>
 									<option value="Salon Pinos">Salon Pinos</option>
 									<option value="Salon Sauces">Salon Sauces</option>
 									<option value="Salon Fresnos">Salon Fresnos</option>
@@ -3858,7 +3868,8 @@ switch ($_GET['op']) {
 								break;
 
 							case 'Renta de Salon sin Coffe Break':
-									$Select='<select name="place[]" class="form-control">
+									$Select= '<select name="place[]" class="form-control">
+									<option>--Designa el Lugar--</option>
 									<option value="Salon Pinos">Salon Pinos</option>
 									<option value="Salon Sauces">Salon Sauces</option>
 								</select>';								
@@ -3867,31 +3878,35 @@ switch ($_GET['op']) {
 									$Select='';
 								break;
 						}
-						$foodTmpl .= '<div class="pane-service" id="s_'.$f->id.'">';
+						$foodTmpl .= '<div class="pane-service">';
 							$foodTmpl .= '<h5>' . $f->subcategoria . '</h5>';
 							$foodTmpl .= '<h5>' . $f->servicio . '</h5>';
 							$foodTmpl .= '<h5>Cantidad: ' . $f->cantidad . '</h5>';
-							$foodTmpl .= '<div class="col-lg-4">
+							$foodTmpl .= '<div class="col-lg-6 col-md-6 col-sm-12">
 											<input type="hidden" name="id_servicio[]" value="'.$f->id.'">
 											<div class="form-group">
 												<label>Lugar:</label>
-												'.$Select.'
+												'.$Select. '
 											</div>
+										  </div>
+										  <div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label>Hora:</label>
 												<input type="time" name="hour[]" class="form-control" >
 											</div>
+										  </div>
 											<div class="form-group">
 												<label>Menu:</label>
 												<textarea class="form-control" name="menu[]" placeholder="Describe el Menu" ></textarea>
 											</div>
-										</div>
 										<div class="clearfix"></div>';
-							$foodTmpl .= '<h4>Notas:</h4>
-								<label for="">Agregar 
-								<a href="#" id="btAdd" onclick="addNoteFood(event, \'s_'.$f->id.'\')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>                
-								</label>
-								<input type="text" name="note_food['.$f->id.'][]" class="form-control" placeholder="Agregar nota">';
+							$foodTmpl .= '<fieldset id="s_'.$f->id. '">
+											<legend>Notas</legend>
+											<label for="">Agregar
+												<a href="#" id="btAdd" onclick="addNoteFood(event, \'s_'.$f->id.'\')" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>
+											</label>
+											<input type="text" name="note_food['.$f->id.'][]" class="form-control" placeholder="Agregar nota">
+										</fieldset>';
 						$foodTmpl .= '</div>';
 					endforeach;
 				}

@@ -81,7 +81,12 @@ function info_cot(id){
       $("#cotizacion_info .list-group span#nights").text(data.datos.noches);
       $("#cotizacion_info .list-group span#days").text(data.datos.dias);
       $("#cotizacion_info").modal("show");
-      $("#cotizacion_info #btn_reporte_interno").attr('href',dominio+'reportes/reporte_interno.php?k='+data.datos.token);
+      if(data.datos.file==null){
+        $("#cotizacion_info #btn_reporte_interno").addClass('hidden');
+      }else{
+        $("#cotizacion_info #btn_reporte_interno").removeClass("hidden");
+        $("#cotizacion_info #btn_reporte_interno").attr('href', dominio + 'reportes/reporte_interno.php?k=' + data.datos.token);
+      }
       if (data.datos.estado==0) {
         $("#cotizacion_info #btn_enviar_cotizacion").removeClass('hidden');
         $("#cotizacion_info #btn_enviar_cotizacion").attr('onclick','enviar_cot_mail(\''+data.datos.token+'\','+data.datos.id_user+')');
