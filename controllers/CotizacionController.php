@@ -3408,7 +3408,7 @@ switch ($_GET['op']) {
 
 		if ($filas>0) {			
 			$user = $resInAuth->fetch(PDO::FETCH_OBJ);
-			if($user->file==null){
+			if($user->file==null || $user->file==""){
 				$response = [
 					'success' => false,
 					'msg' => 'No has enviado aun la cotizacion no puedes confirmarla: ¡HAZ BIEN TU TRABAJO!'

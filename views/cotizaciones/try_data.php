@@ -125,42 +125,6 @@ if($_POST){
             break;
         }
     }
-
-    // for ($i=0; $i <count($_POST['id_servicio']) ; $i++) { 
-    //     $sql = "INSERT INTO `ayb`(`id_empresa`, `id_servicio`, `lugar`, `hora`, `menu`) VALUES 
-    //             ('".$_POST['id_empresa']."', '".$_POST['id_servicio'][$i]."', '".$_POST['place'][$i]."', '".$_POST['hour'][$i]."', '".$_POST['menu'][$i]."')";
-    //         $result = ejecutarConsulta($sql);    
-    // }
-    // if($result){
-    //     $n =0;
-    //     $arregloNotas = array();
-    //     foreach ($_POST['note_food'] as $id => $value) {
-    //         echo $id."<br>";
-    //         foreach ($value as $nota) {
-    //             $arregloNotas['notas'][$n] = [
-    //                 'id' => $id,
-    //                 'nota' => $nota
-    //             ];                
-    //             $n++;
-    //         }
-    //         if ($nota =="") {
-                
-    //         }else{
-    //             $sqlUpd = "UPDATE `ayb` SET `notas`= '".json_encode($arregloNotas)."' WHERE id_servicio = '$id' ";
-    //             // echo $sqlUpd;
-    //             // die();
-    //             $result2 = ejecutarConsulta($sqlUpd);
-    //             $arregloNotas = [];
-    //         }
-    //     }
-    //     echo"<pre>";
-    //         var_dump($arregloNotas);
-    //     echo"</pre>";
-    //     echo  "se inserto con exito <br>";
-    // }else {
-    //     echo "no se inserto ni madres <br>";
-    // }
-
 }
 
 

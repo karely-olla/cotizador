@@ -81,8 +81,7 @@ function construir_areas(areas){
                             <h3 class="box-title">Alimentos y Bebidas | Clave: C-RM-${id}</h3>
                         </div>
                         <div class="box-body">
-                            <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <input type="hidden" name="description[]">
                             <div class="food_all">
 
                             </div>                             
