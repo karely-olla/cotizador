@@ -52,6 +52,9 @@ if (!function_exists('ejecutarConsulta')) {
     
 
 if($_POST){
+    $sqlUpdEmp = "UPDATE cotizaciones SET hora_entrada = '".$_POST['hour_came']."', hora_salida='".$_POST['hour_out']."' 
+                    WHERE id = '".$_POST['id_empresa']."' ";
+        ejecutarConsulta($sqlUpdEmp);
     function insertDpto($dpto, $posicion)
     {
         $n = 0;

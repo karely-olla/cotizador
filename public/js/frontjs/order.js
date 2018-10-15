@@ -58,7 +58,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                                 <label>Describe las Funciones:</label>
-                                <textarea name="description[]" class="form-control"></textarea>
+                                <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -106,7 +106,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                             <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -130,7 +130,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                             <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -154,7 +154,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                             <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -178,7 +178,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                             <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -202,7 +202,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                             <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -226,7 +226,7 @@ function construir_areas(areas){
                             </div>
                             <div class="box-body" style="">
                             <label>Describe las Funciones:</label>
-                            <textarea name="description[]" class="form-control"></textarea>
+                            <textarea name="description[]" class="form-control" required></textarea>
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar

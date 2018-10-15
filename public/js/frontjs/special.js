@@ -559,7 +559,6 @@ function frm_reset(){
 	arreglo_precios =[];
 	arregloFullDay=[];
 	arreglo_servicios=[];
-
 }
 
 $(function(){
@@ -567,16 +566,16 @@ $(function(){
 		e.preventDefault();
 		form = new FormData($("#frm_cotizador_dias")[0]);
 		swal({
-	        title: 'Estas seguro de haber terminado con la cotización?',
-	        // text: "esta accion no se puede revertir!",
-	        type: 'info',
-	        showCancelButton: true,
-	        confirmButtonText: 'Si, registrar!',
-	        cancelButtonText: 'No, más tarde!',
-	        reverseButtons: true
-	      }).then((result) => {
-	        if (result.value) {
-		        $.ajax({
+			title: 'Estas seguro de haber terminado con la cotización?',
+			// text: "esta accion no se puede revertir!",
+			type: 'info',
+			showCancelButton: true,
+			confirmButtonText: 'Si, registrar!',
+			cancelButtonText: 'No, más tarde!',
+			reverseButtons: true
+			}).then((result) => {
+			if (result.value) {
+				$.ajax({
 					url: dominio+'controllers/EspecialController.php?op=store',
 					type: 'POST',
 					dataType: 'json',
@@ -585,37 +584,37 @@ $(function(){
 					contentType:false,
 					processData:false,
 					success: function(data){
+						console.log(data);
 						if (data.success) {
-							// console.log(data);
 							swal({
-			                    position: 'top-end',
-			                    type: 'success',
-			                    title: data.msg,
-			                    showConfirmButton: false,
-			                    timer: 1500
-			                })
-			                frm_reset();
+								position: 'top-end',
+								type: 'success',
+								title: data.msg,
+								showConfirmButton: false,
+								timer: 1500
+							})
+							frm_reset();
 							// window.location.href='../../reporte.php?k='+data.token;
 						}else{
 							if (data.msg=='expired') {
 								swal({
-				                    position: 'top-center',
-				                    type: 'error',
-				                    title: 'La sesion a expirado',
-				                    showConfirmButton: false,
-				                    timer: 2500
-				                })
-				                setTimeout(()=>{				                	
-            						$(location).attr('href','http://localhost/cotizador_servidor/views/login.php');
-				                },3000)
+									position: 'top-center',
+									type: 'error',
+									title: 'La sesion a expirado',
+									showConfirmButton: false,
+									timer: 2500
+								})
+								setTimeout(()=>{				                	
+									$(location).attr('href','http://localhost/cotizador_servidor/views/login.php');
+								},3000)
 							}else{
 								swal({
-				                    position: 'top-end',
-				                    type: 'error',
-				                    title: data.msg,
-				                    showConfirmButton: false,
-				                    timer: 2500
-				                })								
+									position: 'top-end',
+									type: 'error',
+									title: data.msg,
+									showConfirmButton: false,
+									timer: 2500
+								})								
 							}
 						}
 					}
@@ -623,12 +622,12 @@ $(function(){
 				.done(function() {
 					// console.log("success");
 				})	
-	        } else if (
-	          // Read more about handling dismissals
-	          result.dismiss === swal.DismissReason.cancel
-	        ) {
-	        }
-	    })
+			} else if (
+				// Read more about handling dismissals
+				result.dismiss === swal.DismissReason.cancel
+			) {
+			}
+		})
 	})
 })
 

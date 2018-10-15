@@ -265,7 +265,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label>Telefono:</label>
-                      <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" required />
+                      <input type="text" onblur="validLengthPhone(this)" class="form-control" id="telefono"  min="0" onkeypress="return validPhone(event)" name="telefono" placeholder="Telefono" required />
+                      <span id="helpPhone" class="help-block"></span>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

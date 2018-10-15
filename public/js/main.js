@@ -146,6 +146,23 @@ function validPhone(e){
         return false;
 }
 
+function validLengthPhone(tel) {
+
+	let lngt = $(tel).val();
+	let sw;
+	if (lngt.length >= 10) {
+		sw = true;
+	} else if (lngt.length < 10) {
+		$(tel).val("");
+		$(tel).parent().addClass('has-error');
+		$("#helpPhone").text("El telefono debe tener minimo 10 numeros");
+		setTimeout(() => {
+			$(tel).parent().removeClass('has-error');
+			$("#helpPhone").text("");
+		}, 2000);
+	}
+}
+
 
 // validar email usuario
 function validEmail(email,input){

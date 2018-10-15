@@ -36,7 +36,9 @@
               <form action="try_data.php" method="post" id="frm_order">
                 <div class="box box-info">
                   <div class="box-header with-border">
-                      <h2 class="box-title">Generar Orden de Servicio <button type="submit" class="btn btn-primary">Enviar</button></h2>
+                      <h2 class="box-title">Generar Orden de Servicio <button type="submit" class="btn btn-primary">Enviar</button> 
+                        <a href="generar_orden.php?k=<?=$_GET['tkn']?>&id=<?=$_GET['id']?>" class="btn btn-warning btn-sm">Generar PDF</a> 
+                      </h2>
                   </div>
                   <div class="box-body">
                     <input type="hidden" id="id_empresa" name="id_empresa" value="<?= $_GET['id'] ?>">
@@ -46,7 +48,7 @@
                     </div>
                     <div class="form-group col-lg-3">
                       <label for="">Hora de Salida:</label>
-                      <input type="time" name="hour_exit" class="form-control" required>
+                      <input type="time" name="hour_out" class="form-control" required>
                     </div>
                     <div class="form-group col-lg-6">
                       <label for="" class="h3">Selecciona la areas involucradas:</label>

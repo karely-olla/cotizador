@@ -25,7 +25,7 @@ switch ($_GET['op']) {
 			while ($reg = $rspta->fetch(PDO::FETCH_OBJ)) {
 				if ($reg->state==1) {
 					$estado= '<p class="label label-primary">Confirmada</p>';
-					$opciones='<button type="button" class="btn btn-xs btn-warning"  onclick="edit('.$reg->id.')"><i class="fa fa-pencil"></i></button> <button type="button" class="btn btn-xs btn-info"  onclick="info_cot('.$reg->id.')"><i class="fa fa-search"></i></button> <a href="'.$dominio.'reportes/reporte.php?k='.$reg->token.'" target="_blank"  class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o"></i></a> <button type="button" class="btn btn-xs btn-danger" onclick="delete_cot('.$reg->id.')"><i class="fa fa-trash"></i></button>';					
+					$opciones= '<button type="button" class="btn btn-xs btn-warning" disabled onclick="edit('.$reg->id.')"><i class="fa fa-pencil"></i></button> <button type="button" class="btn btn-xs btn-info"  onclick="info_cot('.$reg->id.')"><i class="fa fa-search"></i></button> <a href="'.$dominio.'reportes/reporte.php?k='.$reg->token. '" target="_blank"  class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o"></i></a> <button type="button" class="btn btn-xs btn-danger" disabled onclick="delete_cot('.$reg->id.')"><i class="fa fa-trash"></i></button>';					
 					$botonOrden = '<button type="button" class="btn btn-xs btn-success" onclick="view_ord(\''.$reg->orden.'\')"><i class="fa fa-copy"></i></button>';
 					$onoff = '<div class="onoffswitch">
 							    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="coast_'.$reg->id.'" checked>
@@ -311,7 +311,7 @@ switch ($_GET['op']) {
 					}
 				}
 				$i++;
-			}
+			}			
 			$hospedaje = json_encode($arregloHospedaje);
 			$idusuario=$_SESSION['iduser'];
 			$empresa=limpiarCadena($_POST['empresa']);
