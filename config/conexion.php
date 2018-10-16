@@ -44,7 +44,7 @@ if (!function_exists('ejecutarConsulta'))
 	}
 
 	function validarEmail($email){
-		$str_final= htmlspecialchars($email);
+		$str_final= htmlspecialchars(strtolower($email));
     	return trim(filter_var($str_final, FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL));
 	}
 }
