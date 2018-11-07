@@ -57,8 +57,7 @@ function construir_areas(areas){
                                 <h3 class="box-title">Recepcion</h3>
                             </div>
                             <div class="box-body" style="">
-                                <label>Describe las Funciones:</label>
-                                <textarea name="description[]" class="form-control" required></textarea>
+                            <input type="hidden" name="description[]">
                                 <fieldset id="${element}">
                                     <legend>Notas</legend>
                                     <label for="">Agregar
@@ -246,3 +245,43 @@ function construir_areas(areas){
     $("#areas_selected").html(template);
 }
 
+$(function(){
+    $("#frm_order").on("submit",function(e){
+        e.preventDefault();
+
+        form=new FormData($("#frm_order")[0]);
+
+        $.ajax({
+            url: dominio+'views/cotizaciones/generar_orden.php',
+            type: 'POST',
+            dataType: 'json',
+            encode: true,
+            data: form,
+            contentType:false,
+            processData:false,
+            success: function(data){
+                if (data.exito) {
+                    // console.log(data);
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: data.msg,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }else{
+                       swal({
+                            position: 'top-end',
+                            type: 'success',
+                            title: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })							
+                }
+            }
+        })
+        .done(function() {
+            // console.log("success");
+        })	
+    })
+})

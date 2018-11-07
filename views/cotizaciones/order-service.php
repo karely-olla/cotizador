@@ -36,12 +36,11 @@
               <form action="try_data.php" method="post" id="frm_order">
                 <div class="box box-info">
                   <div class="box-header with-border">
-                      <h2 class="box-title">Generar Orden de Servicio <button type="submit" class="btn btn-primary">Enviar</button> 
-                        <a href="generar_orden.php?k=<?=$_GET['tkn']?>&id=<?=$_GET['id']?>" class="btn btn-warning btn-sm">Generar PDF</a> 
-                      </h2>
+                      <h2 class="box-title">Generar Orden de Servicio <button type="submit" class="btn btn-primary">Generar</button>                       </h2>
                   </div>
                   <div class="box-body">
                     <input type="hidden" id="id_empresa" name="id_empresa" value="<?= $_GET['id'] ?>">
+                    <input type="hidden" id="token" name="token" value="<?= $_GET['tkn'] ?>">
                     <div class="form-group col-lg-3">
                       <label for="">Hora de llegada:</label>
                       <input type="time" name="hour_came" class="form-control" required>
@@ -84,7 +83,7 @@
               $result = ejecutarConsulta($sql);
               while ($f = $result->fetch(PDO::FETCH_OBJ)) {
                   $arreglo = json_decode($f->notas, true);
-                  var_dump( $arreglo);
+                  
               }
           ?>    
     </section>
