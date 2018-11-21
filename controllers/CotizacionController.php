@@ -3475,6 +3475,9 @@ switch ($_GET['op']) {
 			$upd->execute();
 			$f = $upd->rowCount();
 			if ($f>0) {
+				$sqlDelDptos = "DELETE FROM `departamentos` WHERE id_empresa = ".$_POST['id']." ";
+				$resultDel = $con->prepare($sqlDelDptos);
+				$resultDel->execute();
 				if (unlink($ubicacion.$filename)) {				
 					$response=[
 							'success'=>true,  
@@ -3840,6 +3843,7 @@ switch ($_GET['op']) {
 							}
 						endif;
 						$Select;
+						$menu;
 						switch ($f->subcategoria) {
 							case 'Desayuno':
 							case 'Comida':
@@ -3852,9 +3856,23 @@ switch ($_GET['op']) {
 									<option value="Jardin del Bar">Jardin del Bar</option>
 									<option value="Palapa">Palapa</option>
 								  </select>';
+								  $menu='<div class="form-group">
+										<label>Menu:</label>
+										<textarea class="form-control" name="menu[]" required placeholder="Describe el Menu" ></textarea>
+									</div>';
 								break;
 							
 							case 'Equipo Audiovisual':
+								$Select= '<select name="place[]" required class="form-control">
+								<option value="">--Designa el Lugar--</option>
+								<option value="Salon Pinos">Salon Pinos</option>
+								<option value="Salon Sauces">Salon Sauces</option>
+								<option value="Salon Fresnos">Salon Fresnos</option>
+								<option value="Casa Club (Medio)">Casa Club (Medio)</option>
+								<option value="Casa Club (Completo)">Casa Club (Completo)</option>
+							</select>';
+							$menu='<input type="hidden" name="menu[]" value="">';
+							break;
 							case 'Coffe Break Tradicional':
 							case 'Box Lunch':
 									$Select= '<select name="place[]" required class="form-control">
@@ -3865,6 +3883,10 @@ switch ($_GET['op']) {
 									<option value="Casa Club (Medio)">Casa Club (Medio)</option>
 									<option value="Casa Club (Completo)">Casa Club (Completo)</option>
 								  </select>';
+								  $menu='<div class="form-group">
+										<label>Menu:</label>
+										<textarea class="form-control" name="menu[]" required placeholder="Describe el Menu" ></textarea>
+									</div>';
 								break;
 
 							case 'Renta de Salon sin Coffe Break':
@@ -3876,6 +3898,7 @@ switch ($_GET['op']) {
 								break;
 							default:
 									$Select='';
+									$menu='';
 								break;
 						}
 						$foodTmpl .= '<div class="pane-service">';
@@ -3895,10 +3918,7 @@ switch ($_GET['op']) {
 												<input type="time" name="hour[]" required class="form-control" >
 											</div>
 										  </div>
-											<div class="form-group">
-												<label>Menu:</label>
-												<textarea class="form-control" name="menu[]" required placeholder="Describe el Menu" ></textarea>
-											</div>
+											'.$menu.'
 										<div class="clearfix"></div>';
 							$foodTmpl .= '<fieldset id="s_'.$f->id. '">
 											<legend>Notas</legend>
@@ -3921,6 +3941,153 @@ switch ($_GET['op']) {
 			];
 		}
 		echo json_encode($response);
+	break;
+
+	case 'correos':
+			$id_empresa = $_POST['id'];
+			$sql = "SELECT * FROM cotizaciones WHERE id = '$id_empresa' && state = 1 && orden !=''  ";
+			$result = $con->prepare($sql);
+			$result->execute();
+			$f = $result->rowCount();
+			if($f>0){
+				$empresa = $result->fetch(PDO::FETCH_OBJ);
+				$archivo_ruta = '../orden_servicio/'.$empresa->orden;
+				require '../views/mail/PHPMailerAutoload.php';
+				$mail = new PHPMailer;
+				//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+				// $correo = $d_user->correo;
+				$correo2 = "jesus.edu2122@gmail.com";
+				$correo3 = "karely.olmos@rincondelmontero.com";
+				$remitente = 'cotizaciones@cotizador.com';
+				$nombre = 'Rincon del Montero';
+
+				$mail->IsSMTP();     
+				$mail->SMTPDebug  = 0;                     // Set mailer to use SMTP
+				$mail->Host = 'cotizador.rincondelmontero.com';  // Specify main and backup SMTP servers
+				$mail->SMTPAuth = true;                               // Enable SMTP authentication
+				$mail->Username = 'cotizaciones@rincondelmontero.com';                 // SMTP username
+				$mail->Password = 'RMC2018*';                           // SMTP password
+				$mail->Port = 465;                                    // TCP port to connect to
+				$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+
+				$mail->SetFrom($remitente, $nombre);
+				$mail->addAddress($correo2);
+				$mail->addAddress($correo3);
+				// // $mail->addAddress($correo4);
+				$archivo = 'Orden de Servicio C-RM-'.$id_empresa.'.pdf';
+				$mail->AddAttachment($archivo_ruta,$archivo);
+				// $mail->addAddress($correo);
+
+				$mail->IsHTML(true);
+				$mail->Subject = utf8_decode('Orden de Servicio');
+				$cuerpo='
+					<!DOCTYPE html>
+					<html lang="es">
+					<head>
+						<meta charset="UTF-8">
+						<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+						<style type="text/css">
+							*,body{
+							font-family: Open Sans, sans-serif;
+							}
+							.container{
+								width: 100%;
+								max-width: 1500px;
+								height: 420px;
+								margin: 20px auto;
+								padding-top:20px;
+								background: #EDECE6;
+							}
+							.logo{
+								width: 100%;
+								display: block;
+								margin: 0px auto;
+								border-bottom:2px solid #EDECE6;
+							}
+							.logo img{
+								width: 100%;
+								max-width: 300px;
+								display: block;
+								margin: 5px auto;
+								display: block;
+							}
+							.cabecera{
+								width:100%;
+								max-width:550px;
+								margin:0 auto;
+								background: #fff;
+								height: auto;
+								padding: 10px 35px;
+								border-top:4px solid #6E1A52;
+								position: relative;
+							}
+							.embed_img{
+								width: 100%;
+								position: absolute;
+								bottom: -180px;
+								left: 0;
+								text-align: center;
+							}
+							.embed_img img{
+								width: 100%;
+								max-width: 400px;
+								height: 250px;
+								margin: 0 auto;
+								display: block;
+								box-shadow: 1px 0px 10px 4px rgba(0,0,0,.6);
+							}
+							p{
+								width: 100%;
+								margin: 20px auto;
+								color: #7F6F7A;
+								font-size: 16px;
+							}
+							a{
+							font-size: 16px;
+							color:#7AB0E9;
+							cursor:pointer;
+							}
+							a:-webkit-any-link {
+								color: -webkit-link;
+								cursor: pointer;
+								text-decoration: underline;
+							}
+						</style>
+						</head>
+					<body>
+						<div class="container">
+								<div class="cabecera">
+									<div class="logo">
+										<img src="http://cotizador.rincondelmontero.com/images/logotipos/logo-rincon-blanco-horizontal.png" alt="Logotipo" class="logotipo">
+									</div>
+									<p>Te hacemos envio de la orden de servicio.</p>									
+								</div>  
+						</div>
+					</body>
+					</html> ';
+
+				$mail->Body = $cuerpo; 
+				// Definimos AltBody por si el destinatario (quien recive) del correo no admite email con formato html, es decir recibirá este mensaje si el servidor de correo al que enviamos el mensaje no puede admitir html
+				$mail->AltBody = $cuerpo;
+
+				if(!$mail->send()) {
+					$response=[
+						'success' => false,
+						'msg' => "<p>EL correo de confirmacion de la orden de servicio se pudo enviar intenta nuevamente</p>"
+					];
+				} else {
+					$response=[
+						'success' => true,
+						'msg'=> "<p>Hemos enviado por correo la orden que generaste</p>"
+					];
+				}
+			}else{
+				$response = [
+					'success' => false,
+					'msg' => 'No existe la orden de servicio'
+				];
+			}
+			echo json_encode($response);
 	break;
 
 }

@@ -269,6 +269,7 @@ $(function(){
                         showConfirmButton: false,
                         timer: 1500
                     })
+                    window.location.href="http://localhost/cotizador/views/cotizaciones/order-service.php?tkn="+data.token+"&clave=CG_5bda37a313ab0&id="+data.id_orden;
                 }else{
                        swal({
                             position: 'top-end',
@@ -285,3 +286,29 @@ $(function(){
         })	
     })
 })
+
+function enviar_correo_orden(id_orden){
+    $.post(dominio+'controllers/CotizacionController.php?op=correos', {id:id_orden}, function(data) {
+            console.log(data);
+            
+            data = JSON.parse(data);
+            if(data.success){
+                swal({
+                    position: 'top-end',
+                    type: 'success',
+                    title: data.msg,
+                    showConfirmButton: false,
+                    timer: 4500
+                })
+            }else{
+                swal({
+                    position: 'top-end',
+                    type: 'error',
+                    title: data.msg,
+                    showConfirmButton: false,
+                    timer: 4500
+                })
+            }
+        }
+    );
+}

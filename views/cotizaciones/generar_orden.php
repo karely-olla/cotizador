@@ -451,7 +451,6 @@ class PDF extends FPDF
     $pdf->Output($archivo_ruta,'F');
 
     
-    if($result){
         $sql = "UPDATE cotizaciones SET `state` = 1, `orden` = '$filenamePDF' WHERE id=".$id." ";
         $upd = $con->prepare($sql);
         $upd->execute();
@@ -459,19 +458,17 @@ class PDF extends FPDF
             if ($f>0) {
                 $response=[
                     'exito'=>true,
-                    'msg'=>'Orden Generada'
+                    'msg'=>'Orden Generada',
+                    'id_orden' => $id,
+                    'token' => $token
                 ];
             }else{
                 $response=[
                     'exito'=>false,
-                    'msg'=>'No se Genero la orden'
+                    'msg'=>'No se Genero la orden',
+                    'id_orden' => $id,
+                    'token' => $token
                 ];
             }				
-    }else{
-        $response=[
-            'exito'=>false,
-            'msg'=>'Hubo un error, intenta mas tarde'
-        ];
-    }
     echo json_encode($response);
 ?>
